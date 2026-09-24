@@ -11,6 +11,9 @@
     "./package.json": "./package.json"
   },
   "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
       "immediately": true
@@ -19,6 +22,7 @@
   "files": [
     "lib/index.js",
     "lib/client.js",
+    "cordis.patch.yml",
     "README.md",
     "LICENSE"
   ],
