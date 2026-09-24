@@ -17,6 +17,7 @@
 | ① | 设置弹窗**左侧导航滚不动**，设置项一多就被裁掉 | 官方 `*_panel` 固定 `height:800px` + `overflow:hidden`；右侧 `*_options` 有 `overflow-y:auto` 能滚，左侧 `*_navList` 却是 `overflow:visible` | 约束 `*_nav`，让 `*_navList` 自己滚 |
 | ② | 会话 header 标签间距**36px 太远** | 官方 `.X_tabs{gap:36px}` 与 `[class$="_tabs"]{gap:8px}` **特异度相同（都是 0,1,0）**，官方加载在后 → 36px 生效 | `!important` 落实 8px，作用域限定在会话 header |
 | ③ | 中间对话流**不能拖拽调宽**（拖了没反应） | 某个 UI 协调插件在**同一个元素**上覆盖了官方变量定义，把动态公式换成固定 `748px`，而拖拽写入的是 `--dsh-chat-user-width` | **还原官方表达式**（⚠️ 不能用 `unset`） |
+| ④ | 设置页（插件页）tab 组下方有**多余线条**：一条横贯整行 + 一条纯黑 2px 贴在选中胶囊底下 | 容器 `.X_tabs{border-bottom:.5px solid …}` + 选中 tab 的 `::after{height:2px;background:rgb(20,20,19)}`；而选中态已经是橙色实心胶囊 | 两条都去掉（`aria-selected` 精确定位，限定在 `[class$="_section"]` 内） |
 
 ### ① 设置弹窗左侧导航滚不动
 
@@ -73,6 +74,17 @@ div[data-phase] { --dsh-chat-content-width: var(--enhancer-content-width) }   /*
 
 > ⚠️ **不能用 `unset` 偷懒**：实测 `--dsh-chat-content-width: unset` 会把官方的默认公式一起丢掉，
 > 列宽变成撑满 `1158px`、`margin` 归零。必须原样还原官方表达式。
+
+### ④ 设置页 tab 组的多余线条
+
+```css
+.X_tabs            { border-bottom: .5px solid var(--dsw-alias-border-l2) }   /* 横贯 556px */
+.X_tab[aria-selected=true]::after { height: 2px; background: rgb(20,20,19) }  /* 纯黑，贴在胶囊下 */
+```
+
+选中态本来就是橙色实心胶囊，这两条线纯属多余（尤其那条纯黑的）。本插件去掉两者，
+实测修复后 `border-bottom-width = 0px`、`::after display: none`，且选择器命中数唯一
+（`allSelectedTabs: 1`），不影响会话 header 的同名 `_tabs`。
 
 ## 安装
 
