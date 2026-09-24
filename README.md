@@ -84,15 +84,14 @@ dsh plugin --profile <profile> add dsh-ui-fixes
 dsh plugin --profile <profile> add github:jipika/dsh-ui-fixes
 ```
 
-```yaml
-# ~/.dsh/profiles/<profile>/cordis.patch.yml
-- insert:
-    - id: ui-fixes
-      name: 'dsh-ui-fixes'
-```
+本插件自带 `dsh.bundle` 补丁层（见 `cordis.patch.yml`），上面的命令会**自动把
+`dsh-ui-fixes` 加进 profile 的 `bundles` 列表并插入组合树**，不需要手工编辑
+profile 的 `cordis.patch.yml`（实测：`dsh plugin add` 后 `bundles` 自动多出该项，无 warning）。
 
-`desktop` profile 被 Electron 独占（CLI 子命令会被拒），需手改 `package.json`
-（`"dsh-ui-fixes": "link:../../local-plugins/dsh-ui-fixes"`）再 `pnpm install`；
+`desktop` profile 被 Electron 独占（CLI 子命令会被拒），此时手改 `package.json`
+—— `dependencies` 加一项、`bundles` 加一项 —— 再 `pnpm install`：
+**两处都要加**，只加依赖不会激活（`dsh.bundle` 声明本身不会自动挂载）。
+
 **改 client 半边必须重启应用**（client bundle 在 host 启动时读进内存，刷新页面无效）。
 
 ## 实现
