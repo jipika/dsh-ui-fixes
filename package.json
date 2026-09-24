@@ -1,0 +1,47 @@
+{
+  "name": "dsh-ui-fixes",
+  "version": "0.1.0",
+  "description": "Three local CSS fixes for the DSH web GUI: a scrollable settings nav, compact session-header tabs, and a working conversation-width drag handle.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "css",
+    "fix",
+    "settings",
+    "scroll",
+    "tabs",
+    "layout"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jipika/dsh-ui-fixes.git"
+  },
+  "homepage": "https://github.com/jipika/dsh-ui-fixes#readme",
+  "bugs": {
+    "url": "https://github.com/jipika/dsh-ui-fixes/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
