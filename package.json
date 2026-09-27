@@ -1,6 +1,6 @@
 {
   "name": "dsh-ui-fixes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Three local CSS fixes for the DSH web GUI: a scrollable settings nav, compact session-header tabs, and a working conversation-width drag handle.",
   "license": "MIT",
   "type": "module",
