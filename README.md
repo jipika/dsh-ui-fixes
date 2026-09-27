@@ -8,6 +8,10 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
+> **拥有**：4 条官方 CSS 缺陷修复（设置导航可滚 / header 标签间距 / 对话列拖拽调宽 / 设置页多余线条）。
+> **冲突时**：修复 ③ **反向覆盖** `dsh-ui-harmonizer` 写在 `div[data-phase]` 上的 `--dsh-chat-content-width` —— 两者在「对话内容宽度」上互斥，本插件优先（官方拖拽调宽是被覆盖的那个）；想恢复 harmonizer 的滑块就删掉「修复 3」那 3 行。
+> **回滚**：从 `dsh.profile.bundles` 去掉 `dsh-ui-fixes` + 重启应用。
+
 ---
 
 ## 它修什么
